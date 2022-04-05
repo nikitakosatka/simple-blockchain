@@ -7,7 +7,6 @@ app = Flask(__name__)
 
 @app.route('/', methods=["POST", "GET"])
 def index():
-    create_genesis()
 
     if request.method == 'POST':
 
@@ -15,6 +14,7 @@ def index():
         amount = request.form['amount']
         recipient = request.form['recipient']
 
+        create_genesis()
         write_block(sender, amount, recipient)
         return redirect(url_for('index'))
 
